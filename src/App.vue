@@ -1,26 +1,23 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <!-- <div v-for="post in allPosts" :key="post.ti">{{ post.title }}</div>
+  {{ postsCount }} -->
+  <SearchBar />
+  <BookCard />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import { mapGetters, mapActions } from "vuex";
+import BookCard from "./components/BookCard.vue";
+import SearchBar from "./components/SearchBar.vue";
 export default {
-  name: 'App',
+  name: "App",
+  computed: mapGetters(["allPosts", "postsCount"]),
+  methods: mapActions(["fetchBooks"]),
   components: {
-    HelloWorld
-  }
-}
+    BookCard,
+    SearchBar,
+  },
+};
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style></style>
