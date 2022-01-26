@@ -1,6 +1,6 @@
 <template>
   <fieldset>
-    <form @submit="createPost">
+    <form @submit="createPost" class="book-card">
       <input type="text" placeholder="title" v-model="title" />
       <input type="text" placeholder="body" v-model="body" />
       <button type="submit">Create post</button>
@@ -31,3 +31,12 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.book-card {
+  font-size: 14px;
+  background-color: antiquewhite;
+  border: 1px solid #eee;
+  padding: 1rem;
+}
+</style>
