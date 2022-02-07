@@ -1,7 +1,7 @@
 <template>
   <form @submit="onBookSearchSubmit">
-    <input type="text" v-model="query" />
-    <ul>
+    <input type="text" v-model="query" class="autocomplete-input" />
+    <ul class="autocomplete-list">
       <li v-if="autocompleteIsActive">loading...</li>
       <div v-if="!autocompleteIsActive">
         <li
@@ -68,11 +68,30 @@ export default {
 </script>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap");
+
 .author {
   font-weight: bold;
   color: darkblue;
 }
 .autocomplete-result {
+  list-style: none;
   cursor: pointer;
+  background-color: #eee;
+  border: 1px solid black;
+}
+.autocomplete-result:hover {
+  background-color: #4aae9b;
+  color: white;
+}
+
+.autocomplete-list {
+  margin-left: 0 !important;
+  padding: 0 !important;
+}
+
+.autocomplete-input {
+  width: 350px;
+  font-size: 14px;
 }
 </style>

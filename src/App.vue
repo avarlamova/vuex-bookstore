@@ -1,23 +1,29 @@
 <template>
-  <!-- <div v-for="post in allPosts" :key="post.ti">{{ post.title }}</div>
-  {{ postsCount }} -->
   <SearchBar />
-  <BookCard />
+  <Cart />
+  <!-- <BookCard /> -->
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
-import BookCard from "./components/BookCard.vue";
+// import BookCard from "./components/BookCard.vue";
 import SearchBar from "./components/SearchBar.vue";
+import Cart from "./components/Cart.vue";
 export default {
   name: "App",
   computed: mapGetters(["allPosts", "postsCount"]),
   methods: mapActions(["fetchBooks"]),
   components: {
-    BookCard,
+    // BookCard,
     SearchBar,
+    Cart,
   },
 };
 </script>
 
-<style></style>
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap");
+* {
+  font-family: "Lato", sans-serif;
+}
+</style>

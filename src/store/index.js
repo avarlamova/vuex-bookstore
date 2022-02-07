@@ -8,10 +8,14 @@ const store = createStore({
   },
   state: {
     books: [],
+    сart: [1, 2],
   },
   getters: {
-    query() {
-      return store.query;
+    cart(state) {
+      return state.cart;
+    },
+    cartCount(state) {
+      return state.cart.length;
     },
   },
 });
