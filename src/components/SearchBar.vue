@@ -7,7 +7,8 @@
         <li
           class="autocomplete-result"
           v-for="book in matchingBooks"
-          :key="book.key"
+          :key="book.title"
+          :id="book.key"
           @click="onItemChange"
         >
           <span class="title">{{ book.title }}</span> by
@@ -18,7 +19,6 @@
     <button type="submit">Submit</button>
   </form>
 </template>
-
 <script>
 export default {
   data() {
@@ -36,14 +36,13 @@ export default {
       const res = await fetch(
         "http://openlibrary.org/search.json?title=" + this.query.trim()
       );
-      console.log(this.query);
       const response = await res.json();
       if (response) {
         for (const book of response.docs) {
           this.matchingBooks.push({
             title: book.title,
-            author: book.author_name[0],
-            key: book.key,
+            author: book.author_name[0] ?? "",
+            key: book.key, // .replace("/works/", ""),
           });
         }
       } else {
@@ -51,8 +50,17 @@ export default {
       }
       this.autocompleteIsActive = false;
     },
+    // custom debounce function to wait for user input
+    debounce(callback, delay) {
+      let timeout;
+      return function () {
+        clearTimeout(timeout);
+        timeout = setTimeout(callback, delay);
+      };
+    },
     onItemChange(e) {
-      console.log(e.target.key);
+      const bookId = e.target.id;
+      // передать в глобальный store выбранную книгу
     },
   },
   watch: {
@@ -67,7 +75,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 @import url("https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap");
 
 .author {

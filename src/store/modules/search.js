@@ -3,7 +3,6 @@ const SearchModules = {
     sendQuery(query, ctx) {
       // const res = await fetch("http://openlibrary.org/search.json?q=" + query);
       // const books = await res.json();
-      console.log(query);
       ctx.commit("updateSearch", query);
     },
   },
