@@ -1,4 +1,4 @@
-const SearchModules = {
+const SearchModule = {
   actions: {
     sendQuery(query, ctx) {
       // const res = await fetch("http://openlibrary.org/search.json?q=" + query);
@@ -9,7 +9,15 @@ const SearchModules = {
   state: {
     query: "",
   },
-  mutations: {}, // изменяют store
-  getters: {},
+  mutations: {
+    updateSearch(state, value) {
+      state.query = value;
+    },
+  }, // изменяют store
+  getters: {
+    query(state) {
+      return state.query;
+    },
+  },
 };
-export default SearchModules;
+export default SearchModule;

@@ -1,10 +1,11 @@
 import { createStore } from "vuex";
 import BookModule from "./modules/book.js";
-// import SearchModule from "./modules/search.js";
+import SearchModule from "./modules/search.js";
 
 const store = createStore({
   modules: {
     BookModule,
+    SearchModule,
   },
   state: {
     books: [],

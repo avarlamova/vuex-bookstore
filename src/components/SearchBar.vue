@@ -9,17 +9,23 @@
           v-for="book in matchingBooks"
           :key="book.title"
           :id="book.key"
-          @click="onItemChange"
+          @click="displayItem(query)"
         >
           <span class="title">{{ book.title }}</span> by
           <span class="author">{{ book.author }}</span>
         </li>
       </div>
     </ul>
-    <button type="submit">Submit</button>
+    <button type="submit">
+      <i class="material-icons"> Search </i>
+    </button>
   </form>
 </template>
+
+{{ query }}
 <script>
+import { mapActions } from "vuex";
+
 export default {
   data() {
     return {
@@ -29,6 +35,7 @@ export default {
     };
   },
   methods: {
+    ...mapActions(["sendQuery"]),
     onBookSearchSubmit(e) {
       e.preventDefault();
     },
@@ -58,8 +65,8 @@ export default {
         timeout = setTimeout(callback, delay);
       };
     },
-    onItemChange(e) {
-      const bookId = e.target.id;
+    displayItem(value) {
+      this.sendQuery(value);
       // передать в глобальный store выбранную книгу
     },
   },
@@ -101,5 +108,6 @@ export default {
 .autocomplete-input {
   width: 350px;
   font-size: 14px;
+  padding: 10px;
 }
 </style>
